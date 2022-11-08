@@ -1,0 +1,92 @@
+.bg-quaternary {
+    background-color: #e2481c !important;
+}
+
+.badge-quaternary {
+    background-color: #e2481c !important;
+}
+
+.border-quaternary {
+    border-color: #e2481c !important;
+}
+
+.btn-quaternary {
+    color: #fff;
+    background-color: #e2481c;
+    border-color: #e2481c;
+}
+
+.btn-quaternary:hover {
+    color: #fff;
+    background-color: #f5b62f;
+    border-color: #268fff;
+}
+
+.btn-quaternary:focus, .btn-quaternary.focus {
+    color: #fff;
+    background-color: #f5b62f;
+    border-color: #268fff;
+    box-shadow: 0 0 0 0.2rem rgba(255, 222, 38, 0.5);
+}
+
+.btn-quaternary.disabled, .btn-quaternary:disabled {
+    color: #fff;
+    background-color: #e2481c;
+    border-color: #e2481c;
+}
+
+.btn-quaternary:not(:disabled):not(.disabled):active, .btn-quaternary:not(:disabled):not(.disabled).active,
+.show > .btn-quaternary.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+
+.btn-quaternary:not(:disabled):not(.disabled):active:focus, .btn-quaternary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-quaternary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 222, 38, 0.5);
+}
+
+.btn-outline-quaternary {
+    color: #e2481c;
+    border-color: #e2481c;
+}
+
+.btn-outline-quaternary:hover {
+    color: #fff;
+    background-color: #e2481c;
+    border-color: #e2481c;
+}
+
+.btn-outline-quaternary:focus, .btn-outline-quaternary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 222, 38, 0.5);
+}
+
+.btn-outline-quaternary.disabled, .btn-outline-quaternary:disabled {
+    color: #e2481c;
+    background-color: transparent;
+}
+
+.btn-outline-quaternary:not(:disabled):not(.disabled):active, .btn-outline-quaternary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-quaternary.dropdown-toggle {
+    color: #fff;
+    background-color: #e2481c;
+    border-color: #e2481c;
+}
+
+.btn-outline-quaternary:not(:disabled):not(.disabled):active:focus, .btn-outline-quaternary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-quaternary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 222, 38, 0.5);
+}
+
+.btn-outline-quaternary i {
+    color: #e2481c !important;
+}
+
+.btn-outline-quaternary:hover i {
+    color: white !important;
+}
+
+.text-quaternary {
+    color: #e2481c !important;
+}

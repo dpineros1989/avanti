@@ -1,0 +1,103 @@
+@import 'assets/custom-styles/badge.css';
+@import 'assets/custom-styles/colors.css';
+
+/* html, body { 
+    height: 100%; 
+}*/
+
+body { 
+    background: url('assets/images/background.png') no-repeat center center fixed !important;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
+}
+
+.form-control-disabled {
+	cursor: not-allowed;
+}
+
+
+
+.card-header {
+    color: white;
+}
+
+.card-footer {
+    font-size: 0.8em;
+}
+
+/* i.fa {
+	color: #f5b62f;
+} */
+
+.list-container {
+    height: 450px;
+    border: 1px solid darkgray;
+}
+
+.list-container-large {
+    height: 850px;
+    border: 1px solid darkgray;
+}
+
+.puntero {
+    cursor: pointer;
+}
+
+.hoverable:hover {
+    background-color: #00539f !important;
+}
+
+.no-decoration {
+    text-decoration: none !important;
+}
+
+
+/* Chart options */
+.chart-centered {
+    width: 100%;
+    display: block;
+}
+
+
+/* Colores */
+.white {
+    color: white !important;
+}
+
+.red {
+    color: red !important;
+}
+
+.blue {
+    color: rgb(2, 133, 206) !important;
+}
+
+.green {
+    color: rgb(186, 204, 0) !important;
+}
+
+/* Botones */
+.btn-icon {
+    width: 55px !important;
+}
+.btn-outline-danger i {
+    color: #a71d2a !important;
+}
+
+.btn-outline-danger:hover i {
+    color: white !important;
+}
+
+.btn-outline-success i {
+    color: #28a745 !important;
+}
+
+.btn-outline-success:hover i {
+    color: white !important;
+}
+
+label.strong {
+    font-weight: bold !important;
+}

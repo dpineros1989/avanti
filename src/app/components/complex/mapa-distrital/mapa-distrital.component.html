@@ -1,0 +1,483 @@
+<div class="card border-quinary mb-2">
+    <div class="card-header bg-quinary">
+        {{ titulo }}
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-responsive table-sm table-hover table-inner-bordered mb-0">
+            <tr>
+                <th></th>
+                <th>Sector Central</th>
+                <th>Sector descentralizado adscritas</th>
+                <th>Sector descentralizado vinculadas</th>
+            </tr>
+            <tr>
+                <th>1. Gestión Pública</th>
+                <td>
+                    <span   class="badge"
+                            title="Alta Consejería para los Derechos de las Víctimas, la Paz y la Reconciliación"
+                            [class.badge-primary]="entidades['SECGEN'] || entidades['ACDVPR']"
+                            [class.disabled]="!(entidades['SECGEN'] || entidades['ACDVPR'])"
+                            (click)="verEntidad('ACDVPR')">
+                        SECGEN
+                    </span>
+                    <span   class="badge"
+                            title="Depto Administrativo del Servicio Civil"
+                            [class.badge-primary]="entidades['DADSC']"
+                            [class.disabled]="!entidades['DADSC']"
+                            (click)="verEntidad('DADSC')">
+                        DADSC
+                    </span>
+                </td>
+                <td></td>
+                <td class="last"></td>
+            </tr>
+            <tr>
+                <th>2. Gobierno</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de Gobierno"
+                            [class.badge-primary]="entidades['SDG']"
+                            [class.disabled]="!entidades['SDG']"
+                            (click)="verEntidad('SDG')">
+                        SDG
+                    </span>
+                    <span   class="badge"
+                    title="Depto. Adtivo de la Defensoría del Espacio Público"
+                            [class.badge-primary]="entidades['DADEP']"
+                            [class.disabled]="!entidades['DADEP']"
+                            (click)="verEntidad('DADEP')">
+                        DADEP
+                    </span>
+                    <span   class="badge"
+                    title="UAE Cuerpo Oficial de Bomberos"
+                            [class.badge-primary]="entidades['UAEB']"
+                            [class.disabled]="!entidades['UAEB']"
+                            (click)="verEntidad('UAEB')">
+                        UAEB
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                    title="Instit. Dist. de la Participación y Acción Comunal"
+                            [class.badge-primary]="entidades['IDPAC']"
+                            [class.disabled]="!entidades['IDPAC']"
+                            (click)="verEntidad('IDPAC')">
+                        IDPAC
+                    </span>
+                    <span   class="badge"
+                    title="Fondo de Prevención y Atención de Emerg."
+                            [class.badge-primary]="entidades['FOPAE']"
+                            [class.disabled]="!entidades['FOPAE']"
+                            (click)="verEntidad('FOPAE')">
+                        FOPAE
+                    </span> 
+                    <span   class="badge"
+                    title="Fondo de vigilancia y seguridad"
+                            [class.badge-primary]="entidades['FVS']"
+                            [class.disabled]="!entidades['FVS']"
+                            (click)="verEntidad('FVS')">
+                        FVS
+                    </span>
+                </td>
+                <td class="last"></td>
+            </tr>
+            <tr>
+                <th>3. Hacienda</th>
+                <td>
+                    <span   class="badge"
+                    title="Secretaría Distrital de Hacienda"
+                            [class.badge-primary]="entidades['SHD']"
+                            [class.disabled]="!entidades['SHD']"
+                            (click)="verEntidad('SHD')">
+                        SHD
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                    title="U.A.E. Unidad Adtiva Especial de Catastro"
+                            [class.badge-primary]="entidades['UAEC']"
+                            [class.disabled]="!entidades['UAEC']"
+                            (click)="verEntidad('UAEC')">
+                        UAEC
+                    </span>
+                    <span   class="badge"
+                    title="Fondo de Prestaciones Económ, Cesantías y Pensiones"
+                            [class.badge-primary]="entidades['FONCEP']"
+                            [class.disabled]="!entidades['FONCEP']"
+                            (click)="verEntidad('FONCEP')">
+                        FONCEP
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                    title="Lotería de Bogotá"
+                            [class.badge-primary]="entidades['LOTERIA']"
+                            [class.disabled]="!entidades['LOTERIA']"
+                            (click)="verEntidad('LOTERIA')">
+                        LOTERIA
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>4. Planeación</th>
+                <td>
+                    <span   class="badge"
+                    title="Secretaría Distrital de Planeación"
+                            [class.badge-primary]="entidades['SDP']"
+                            [class.disabled]="!entidades['SDP']"
+                            (click)="verEntidad('SDP')">
+                        SDP
+                    </span>
+                </td>
+                <td></td>
+                <td class="last"></td>
+            </tr>
+            <tr>
+                <th>5. Desarrollo Económico, Industria y Turismo</th>
+                <td>
+                    <span   class="badge"
+                    title="Secretaría Distrital de Desarrollo Económico"
+                            [class.badge-primary]="entidades['SDDE']"
+                            [class.disabled]="!entidades['SDDE']"
+                            (click)="verEntidad('SDDE')">
+                        SDDE
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                    title="Instituto para la Economía Social"
+                            [class.badge-primary]="entidades['IPES']"
+                            [class.disabled]="!entidades['IPES']"
+                            (click)="verEntidad('IPES')">
+                        IPES
+                    </span>
+                    <span   class="badge"
+                    title="Instituto Distrital de Turismo"
+                            [class.badge-primary]="entidades['IDT']"
+                            [class.disabled]="!entidades['IDT']"
+                            (click)="verEntidad('IDT')">
+                        IDT
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                    title="Corpor. para el Desarrollo y la Productividad - Bogotá Región"
+                            [class.badge-primary]="entidades['COOPROD']"
+                            [class.disabled]="!entidades['COOPROD']"
+                            (click)="verEntidad('COOPROD')">
+                        COOPROD
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>6. Educación</th>
+                <td>
+                    <span   class="badge"
+                    title="Secretaría Distrital de Educación"
+                            [class.badge-primary]="entidades['SED']"
+                            [class.disabled]="!entidades['SED']"
+                            (click)="verEntidad('SED')">
+                        SED
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                    title="Inst. para la Invest. y el Desarrollo Pedagógico"
+                            [class.badge-primary]="entidades['IDEP']"
+                            [class.disabled]="!entidades['IDEP']"
+                            (click)="verEntidad('IDEP')">
+                        IDEP
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                    title="Universidad Distrital Francisco José de Caldas"
+                            [class.badge-primary]="entidades['UDFJC']"
+                            [class.disabled]="!entidades['UDFJC']"
+                            (click)="verEntidad('UDFJC')">
+                        UDFJC
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>7. Salud</th>
+                <td>
+                    <span   class="badge"
+                    title="Secretaría Distrital de Salud"
+                            [class.badge-primary]="entidades['SDS']"
+                            [class.disabled]="!entidades['SDS']"
+                            (click)="verEntidad('SDS')">
+                        SDS
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                    title="Fondo Financiero Distrital de Salud"
+                            [class.badge-primary]="entidades['FFDS']"
+                            [class.disabled]="!entidades['FFDS']"
+                            (click)="verEntidad('FFDS')">
+                        FFDS
+                    </span>
+                    <span   class="badge"
+                    title="22 Hospitales"
+                            [class.badge-primary]="entidades['HOSPITALES']"
+                            [class.disabled]="!entidades['HOSPITALES']"
+                            (click)="verEntidad('HOSPITALES')">
+                        HOSPITALES
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                    title="Capital Salud EPS - S S.A.S"
+                            [class.badge-primary]="entidades['CSALUD']"
+                            [class.disabled]="!entidades['CSALUD']"
+                            (click)="verEntidad('CSALUD')">
+                        CSALUD
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>8. Integración Social</th>
+                <td>
+                    <span   class="badge"
+                    title="Secretaría Distrital de Integración Social"
+                            [class.badge-primary]="entidades['SDIS']"
+                            [class.disabled]="!entidades['SDIS']"
+                            (click)="verEntidad('SDIS')">
+                        SDIS
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                            title="Instituto para la Protección de la Niñez y la Juventud"
+                            [class.badge-primary]="entidades['IDIPRON']"
+                            [class.disabled]="!entidades['IDIPRON']"
+                            (click)="verEntidad('IDIPRON')">
+                        IDIPRON
+                    </span>
+                </td>
+                <td class="last"></td>
+            </tr>
+            <tr>
+                <th>9. Cultura, Recreación y Deporte</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de Cultura, Recreación y Deporte"
+                            [class.badge-primary]="entidades['SCRD']"
+                            [class.disabled]="!entidades['SCRD']"
+                            (click)="verEntidad('SCRD')">
+                        SCRD
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                            title="Inst. Dist. para la Recreación y el Deporte"
+                            [class.badge-primary]="entidades['IDRD']"
+                            [class.disabled]="!entidades['IDRD']"
+                            (click)="verEntidad('IDRD')">
+                        IDRD
+                    </span>
+                    <span   class="badge"
+                            title="Orquesta Filarmónica de Bogotá"
+                            [class.badge-primary]="entidades['OFB']"
+                            [class.disabled]="!entidades['OFB']"
+                            (click)="verEntidad('OFB')">
+                        OFB
+                    </span>
+                    <span   class="badge"
+                            title="Fundación Gilberto Alzate Avendaño"
+                            [class.badge-primary]="entidades['FGAAV']"
+                            [class.disabled]="!entidades['FGAAV']"
+                            (click)="verEntidad('FGAAV')">
+                        FGAAV
+                    </span>
+                    <span   class="badge"
+                            title="Instituto Distrital de las Artes"
+                            [class.badge-primary]="entidades['IDARTES']"
+                            [class.disabled]="!entidades['IDARTES']"
+                            (click)="verEntidad('IDARTES')">
+                        IDARTES
+                    </span>
+                    <span   class="badge"
+                            title="Inst. Dist. de Patrimonio Cultural"
+                            [class.badge-primary]="entidades['IDPC']"
+                            [class.disabled]="!entidades['IDPC']"
+                            (click)="verEntidad('IDPC')">
+                        IDPC
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                            title="Canal Capital"
+                            [class.badge-primary]="entidades['CCAPITAL']"
+                            [class.disabled]="!entidades['CCAPITAL']"
+                            (click)="verEntidad('CCAPITAL')">
+                        CCAPITAL
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>10. Ambiente</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de Ambiente"
+                            [class.badge-primary]="entidades['SDA']"
+                            [class.disabled]="!entidades['SDA']"
+                            (click)="verEntidad('SDA')">
+                        SDA
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                            title="Jardín Botánico José Celestino Mutis"
+                            [class.badge-primary]="entidades['JBOTANICO']"
+                            [class.disabled]="!entidades['JBOTANICO']"
+                            (click)="verEntidad('JBOTANICO')">
+                        JBOTANICO
+                    </span>
+                </td>
+                <td class="last"></td>
+            </tr>
+            <tr>
+                <th>11. Movilidad</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de Movilidad"
+                            [class.badge-primary]="entidades['SDM']"
+                            [class.disabled]="!entidades['SDM']"
+                            (click)="verEntidad('SDM')">
+                        SDM
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                            title="Instituto de Desarrollo Urbano"
+                            [class.badge-primary]="entidades['IDU']"
+                            [class.disabled]="!entidades['IDU']"
+                            (click)="verEntidad('IDU')">
+                        IDU
+                    </span>
+                    <span   class="badge"
+                            title="Unidad Adtiva, Especial de Rehabilitación y Mantenimiento Vial"
+                            [class.badge-primary]="entidades['UAERMV']"
+                            [class.disabled]="!entidades['UAERMV']"
+                            (click)="verEntidad('UAERMV')">
+                        UAERMV
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                            title="Transmilenio S.A."
+                            [class.badge-primary]="entidades['TRANSMILENIO']"
+                            [class.disabled]="!entidades['TRANSMILENIO']"
+                            (click)="verEntidad('TRANSMILENIO')">
+                        TRANSMILENIO
+                    </span>
+                    <span   class="badge"
+                            title="Terminal de Transportes S.A."
+                            [class.badge-primary]="entidades['TERMINAL']"
+                            [class.disabled]="!entidades['TERMINAL']"
+                            (click)="verEntidad('TERMINAL')">
+                        TERMINAL
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>12. Habitat</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de Hábitat"
+                            [class.badge-primary]="entidades['SDHT']"
+                            [class.disabled]="!entidades['SDHT']"
+                            (click)="verEntidad('SDHT')">
+                        SDHT
+                    </span>
+                </td>
+                <td>
+                    <span   class="badge"
+                            title="Caja de Vivienda Popular"
+                            [class.badge-primary]="entidades['CVP']"
+                            [class.disabled]="!entidades['CVP']"
+                            (click)="verEntidad('CVP')">
+                        CVP
+                    </span>
+                    <span   class="badge"
+                            title="Unidad Adtiva Especial de Servicios Públicos"
+                            [class.badge-primary]="entidades['UAESP']"
+                            [class.disabled]="!entidades['UAESP']"
+                            (click)="verEntidad('UAESP')">
+                        UAESP
+                    </span>
+                </td>
+                <td class="last">
+                    <span   class="badge"
+                            title="Empresa de Renovación Urbana"
+                            [class.badge-primary]="entidades['ERU']"
+                            [class.disabled]="!entidades['ERU']"
+                            (click)="verEntidad('ERU')">
+                        ERU
+                    </span>
+                    <span   class="badge"
+                            title="Metrovivienda"
+                            [class.badge-primary]="entidades['METROVIVIENDA']"
+                            [class.disabled]="!entidades['METROVIVIENDA']"
+                            (click)="verEntidad('METROVIVIENDA')">
+                        METROVIVIENDA
+                    </span>
+                    <span   class="badge"
+                            title="Empresa de Telecomunicaciones de Bogotá"
+                            [class.badge-primary]="entidades['ETB']"
+                            [class.disabled]="!entidades['ETB']"
+                            (click)="verEntidad('ETB')">
+                        ETB
+                    </span>
+                    <span   class="badge"
+                            title="Empresa de Energía de Bogotá"
+                            [class.badge-primary]="entidades['EEB']"
+                            [class.disabled]="!entidades['EEB']"
+                            (click)="verEntidad('EEB')">
+                        EEB
+                    </span>
+                    <span   class="badge"
+                            title="Empresa de Acueducto y Alcantarillado de Bogotá"
+                            [class.badge-primary]="entidades['EAAB']"
+                            [class.disabled]="!entidades['EAAB']"
+                            (click)="verEntidad('EAAB')">
+                        EAAB
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>13. Mujeres</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de la Mujer"
+                            [class.badge-primary]="entidades['SDMUJER']"
+                            [class.disabled]="!entidades['SDMUJER']"
+                            (click)="verEntidad('SDMUJER')">
+                        SDMUJER
+                    </span>
+                </td>
+                <td></td>
+                <td class="last"></td>
+            </tr>
+            <tr>
+                <th>14. Seguridad y Convivencia</th>
+                <td>
+                    <span   class="badge"
+                            title="Secretaría Distrital de Seguridad, Convivencia y Justicia"
+                            [class.badge-primary]="entidades['SCJ']"
+                            [class.disabled]="!entidades['SCJ']"
+                            (click)="verEntidad('SCJ')">
+                        SCJ
+                    </span>
+                </td>
+                <td></td>
+                <td class="last"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-footer bg-light">
+        Las entidades resaltadas hacen parte del Sistema Distrital de Atención, Asistencia y Reparación Integral a las Víctimas.
+    </div>
+</div>

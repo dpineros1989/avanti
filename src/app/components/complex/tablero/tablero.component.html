@@ -1,0 +1,74 @@
+<div class="card border-primary mt-3">
+    <div class="card-body p-2">
+        <div class="row">
+            <div class="col-lg-3">
+                <app-boton-tablero 
+                        icono="flag-checkered"
+                        [valor]="cantidadMetas"
+                        titulo="Metas PAD"
+                        subtitulo=""
+                        [ruta]="rutas[0] ? rutas[0] : null">
+                </app-boton-tablero>
+            </div>
+            <div class="col-lg-3">
+                <app-boton-tablero 
+                        icono="tachometer-alt"
+                        valor="{{ avanceFisicoUltimoCorte }} %"
+                        titulo="Avance cumplimiento"
+                        subtitulo="Meta PAD"
+                        [ruta]="rutas[1] ? rutas[1] : null">
+                </app-boton-tablero>
+            </div>
+            <div class="col-lg-3">
+                <app-boton-tablero 
+                        icono="dollar-sign"
+                        [valor]="avancePptoVigenteUltimoCorte"
+                        titulo="Presupuesto vigente"
+                        subtitulo="(millones)">
+                </app-boton-tablero>
+            </div>
+            <div class="col-lg-3">
+                <app-boton-tablero 
+                        icono="coins"
+                        [valor]="avancePptoEjecutadoUltimoCorte"
+                        titulo="Presupuesto ejecutado"
+                        subtitulo="(millones)">
+                </app-boton-tablero>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <label class="red">*</label>&nbsp;
+                <label>Nota</label>: {{ nota }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card border-primary">
+                    <div class="card-body pt-1">
+                        <label class="text-primary font-weight-bold">{{ graficaAvanceFisico.titulo }}</label>
+                        <app-grafica 
+                                [categorias]="graficaAvanceFisico.categorias" 
+                                [series]="graficaAvanceFisico.series" 
+                                unidad="%"
+                                alto="300px">
+                        </app-grafica>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-primary">
+                    <div class="card-body pt-1">
+                        <label class="text-primary font-weight-bold">{{ graficaAvancePptal.titulo }}</label>
+                        <app-grafica 
+                                [categorias]="graficaAvancePptal.categorias" 
+                                [series]="graficaAvancePptal.series" 
+                                unidad="millones" 
+                                alto="300px">
+                        </app-grafica>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

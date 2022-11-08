@@ -1,0 +1,11 @@
+<label class="text-primary text-center font-weight-bold w-100">Avance físico</label>
+
+<app-grafica-gauge-circular *ngIf="!cargando && !error && avanceGlobal != null"
+    [referencia]="avanceGlobal.fisicoProgramacion | dosDecimales" 
+    [valor]="avanceGlobal.fisicoEjecucion | dosDecimales"
+    alto="320px">
+</app-grafica-gauge-circular>
+
+<div class="p-1 text-center animated fadeIn fast" *ngIf="cargando">
+    <app-cargando [mostrar]="cargando"></app-cargando>
+</div>

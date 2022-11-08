@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-5 col-md-12 col-sm-12">
+        <app-cumplimiento-global 
+            titulo="Cumplimiento Meta PAD"
+            [corteSeleccionado]="corteSeleccionado">
+        </app-cumplimiento-global>
+        <app-presupuesto-componente
+            titulo="Metas PAD por Componente"
+            [corteSeleccionado]="corteSeleccionado">
+        </app-presupuesto-componente>
+        <app-presupuesto-plurianual 
+            titulo="Presupuesto PAD Plurianual"
+            [corteSeleccionado]="corteSeleccionado">
+        </app-presupuesto-plurianual>
+    </div>
+    <div class="col-lg-7 col-md-12 col-sm-12 mb-2">
+        <app-mapa-distrital 
+            titulo="Mapa Distrital"
+            [corteSeleccionado]="corteSeleccionado">
+        </app-mapa-distrital>
+    </div>
+</div>

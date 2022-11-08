@@ -1,0 +1,94 @@
+<div class="card">
+    <div class="card-body">
+        <h4 *ngIf="titulo">{{ titulo }}</h4>
+        <span *ngIf="!mostrarDetalle && !mostrarRegistro">
+            {{ indicadores.length }} registro(s) encontrado(s)
+        </span>
+        <cdk-virtual-scroll-viewport itemSize="50" class="list-container-large mt-3" *ngIf="indicadores.length > 0 && !mostrarDetalle && !mostrarRegistro">
+            <table class="table table-sm table-responsive-sm table-hover mt-1">
+                <thead>
+                    <tr>
+                        <th class="w-5">&nbsp;</th>
+                        <th class="w-60">Meta PAD</th>
+                        <th class="w-25">PI asociado</th>
+                        <th class="w-10">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *cdkVirtualFor="let indicador of indicadores; let i = index">
+                        <td>
+                            <i class="fa fa-check blue" *ngIf="indicador.principal"></i>
+                        </td>
+                        <td>{{ indicador.metaPad }}</td>
+                        <td>
+                            <span *ngIf="indicador.metasPI && indicador.metasPI.length > 0">
+                                {{ indicador.metasPI[0].proyecto.nombre }}
+                            </span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-icon btn-outline-primary" (click)="verDetalle(indicador)">
+                                <i class="fa fa-clipboard-list"></i>
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-icon btn-outline-quinary" 
+                                    (click)="verRegistro(indicador)"
+                                    *ngIf="usuario && usuario.roles.includes('ENTIDAD') && corteParaRegistro && indicador.vigencia.id === corteParaRegistro.vigencia.id && usuario.entidad.id === indicador.entidad.id">
+                                <i class="fa fa-pen"></i>
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-icon btn-outline-quinary" 
+                                    (click)="verRegistro(indicador)"
+                                    *ngIf="usuario && usuario.roles.includes('ADMIN') && corteParaRegistro && indicador.vigencia.id === corteParaRegistro.vigencia.id">
+                                <i class="fa fa-clipboard-check"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </cdk-virtual-scroll-viewport>
+        
+        <div class="text-center animated fadeIn fast" *ngIf="indicadores.length === 0">
+            <table class="table table-sm table-responsive-sm table-hover mt-1 mb-5">
+                <thead>
+                    <tr>
+                        <th class="w-5">Archivo</th>
+                        <th class="w-60">Descripcion</th>
+                        <th class="w-25">Entidad</th>
+                        <th class="w-10">Componente</th>
+                    </tr>
+                </thead>
+            </table>
+            <p class="mb-0">
+                <i class="fa fa-exclamation-triangle fa-4x"></i>
+            </p>
+            <p class="mb-2">
+                La entidad aún no ha reportado datos abiertos en la vigencia!!
+            </p>
+        </div>
+        
+        <!-- Detalle del indicador seleccionado - Incluye seguimientos -->
+        <app-indicador [indicador]="indicadorSeleccionado" *ngIf="mostrarDetalle"></app-indicador>
+        
+        <!-- Detalle del indicador seleccionado - Incluye seguimientos -->
+        <app-registro-seguimiento [indicador]="indicadorSeleccionado" *ngIf="mostrarRegistro"></app-registro-seguimiento>
+        
+        <div class="row" *ngIf="mostrarDetalle">
+            <div class="col">
+                <button type="button" class="btn btn-link text-primary no-decoration" (click)="ocultarDetalle()">
+                    <i class="fa fa-chevron-left text-primary"></i> &nbsp;
+                    Regresar a metas PAD
+                </button>
+            </div>
+        </div>
+        
+        <div class="row" *ngIf="mostrarRegistro">
+            <div class="col">
+                <button type="button" class="btn btn-link text-primary no-decoration" (click)="ocultarRegistro()">
+                    <i class="fa fa-chevron-left text-primary"></i> &nbsp;
+                    Regresar a metas PAD
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>

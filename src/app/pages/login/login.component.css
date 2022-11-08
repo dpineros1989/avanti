@@ -1,0 +1,18 @@
+.card {
+    margin-top: 80px;
+    margin-bottom: auto;
+    background: rgba(51, 122, 183, 0.2) !important;
+    background: rgba(238, 238, 238, 0.2) !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+}
+.img-container {
+    position: absolute;
+    top: -75px;
+}

@@ -1,0 +1,92 @@
+.bg-secondary {
+    background-color: #a70d29 !important;
+}
+
+.badge-secondary {
+    background-color: #a70d29 !important;
+}
+
+.border-secondary {
+    border-color: #a70d29 !important;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #a70d29;
+    border-color: #a70d29;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #c80710;
+    border-color: #c80003;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+    color: #fff;
+    background-color: #c80710;
+    border-color: #c80003;
+    box-shadow: 0 0 0 0.2rem rgba(255, 38, 92, 0.5);
+}
+
+.btn-secondary.disabled, .btn-secondary:disabled {
+    color: #fff;
+    background-color: #a70d29;
+    border-color: #a70d29;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 38, 92, 0.5);
+}
+
+.btn-outline-secondary {
+    color: #a70d29;
+    border-color: #a70d29;
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #a70d29;
+    border-color: #a70d29;
+}
+
+.btn-outline-secondary:focus, .btn-outline-secondary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 38, 92, 0.5);
+}
+
+.btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+    color: #a70d29;
+    background-color: transparent;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #a70d29;
+    border-color: #a70d29;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 38, 92, 0.5);
+}
+
+.btn-outline-secondary i {
+    color: #a70d29 !important;
+}
+
+.btn-outline-secondary:hover i {
+    color: white !important;
+}
+
+.text-secondary {
+    color: #a70d29 !important;
+}

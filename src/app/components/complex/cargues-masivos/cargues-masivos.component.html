@@ -1,0 +1,90 @@
+<div class="card border-primary mt-3" *ngIf="!mostrandoRetroalimentacion">
+    <div class="card-body p-2">
+        <label class="m-1 font-weight-bold" *ngIf="ultimoCorte">
+            Seguimientos cargados en {{ ultimoCorte.nombre.toLowerCase() }} de {{ ultimoCorte.vigencia.nombre }}
+        </label>
+
+
+        <cdk-virtual-scroll-viewport itemSize="50" *ngIf="ultimoCorte && cargues && cargues.length > 0" class="list-container">
+            <table class="table table-sm table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th *ngIf="retroalimentar">Entidad</th>
+                        <th class="w-50">Archivo</th>
+                        <th class="w-25">Fecha cargue</th>
+                        <th class="w-25">Retroalimentación</th>
+                        <th *ngIf="retroalimentar"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cargue of cargues; let i = index;" 
+                        [ngClass]="{'bg-outlight': cargue.aprobado}">
+                        <td>
+                            <i class="fa fa-user-check" *ngIf="cargue.aprobado"></i>
+                            <span *ngIf="!(cargue.aprobado)">
+                                {{ i + 1 }}
+                            </span>
+                        </td>
+                        <td *ngIf="retroalimentar">
+                            <span [title]="cargue.entidad.nombre">
+                                {{ cargue.entidad.sigla }}
+                            </span>
+                        </td>
+                        <td>
+                            <a [href]="getCargueUrl(cargue.id)" target="_blank">
+                                <img src="assets/icons/excel-icon.png" height="32">
+                                {{ cargue.archivo }}
+                            </a>
+                        </td>
+                        <td>{{ cargue.fecha | date:'yyyy-MM-dd HH:mm' }}</td>
+                        <td>{{ cargue.retroalimentacion.descripcion }}</td>
+                        <td *ngIf="retroalimentar">
+                            <button type="button" class="btn btn-outline-primary" *ngIf="!cargue.aprobado"
+                                        (click)="verRetroalimentacion(cargue)">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
+        <div class="text-center animated fadeIn fast" *ngIf="!cargues || cargues.length === 0">
+            <table class="table table-sm table-responsive-sm table-hover mt-1 mb-5">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th *ngIf="retroalimentar">Entidad</th>
+                        <th class="w-50">Archivo</th>
+                        <th class="w-25">Fecha cargue</th>
+                        <th class="w-25">Retroalimentación</th>
+                        <th *ngIf="retroalimentar"></th>
+                    </tr>
+                </thead>
+            </table>
+            <p class="mb-0">
+                <i class="fa fa-exclamation-triangle fa-4x text-quinary"></i>
+            </p>
+            <p class="mb-2">
+                La entidad aún no ha reportado seguimientos en el corte!
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="card border-success mt-3" *ngIf="mostrandoRetroalimentacion">
+    <div class="card-body p-2">
+        <!-- Retroalimentación del cargue seleccionado -->
+        <app-retroalimentacion [cargue]="cargueSeleccionado"></app-retroalimentacion>
+                
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-link text-success no-decoration" (click)="ocultarRetroalimentacion()">
+                    <i class="fa fa-chevron-left text-success"></i> &nbsp;
+                    Mostrar seguimientos cargados
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

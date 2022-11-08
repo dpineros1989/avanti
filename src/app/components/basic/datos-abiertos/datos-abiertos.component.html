@@ -1,0 +1,53 @@
+<span>
+    {{ datos.length }} registro(s) encontrado(s)
+</span>
+<cdk-virtual-scroll-viewport itemSize="50" *ngIf="datos.length > 0" class="list-container">
+    <table class="table table-sm table-responsive-sm table-hover mt-1">
+        <thead>
+            <tr>
+                <th class="w-25">Archivo</th>
+                <th class="w-60">Descripcion</th>
+                <th class="w-5">Entidad</th>
+                <th class="w-10">Componente</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *cdkVirtualFor="let dato of datos; let i = index">
+                <td>
+                    <a [href]="dato.url" target="_blank" title="Descargar archivo">
+                        <img src="assets/icons/{{ dato.tipo.icono }}" height="32">
+                    </a> &nbsp;
+                    {{ dato.archivo }}
+                </td>
+                <td>{{ dato.descripcion }}</td>
+                <td>
+                    <span [title]="dato.entidad.nombre">
+                            {{ dato.entidad.sigla }}
+                    </span>
+                </td>
+                <td>
+                    {{ dato.componente.nombre }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</cdk-virtual-scroll-viewport>
+
+<div class="text-center animated fadeIn fast" *ngIf="datos.length === 0">
+    <table class="table table-sm table-responsive-sm table-hover mt-1 mb-5">
+        <thead>
+            <tr>
+                <th class="w-25">Archivo</th>
+                <th class="w-60">Descripcion</th>
+                <th class="w-5">Entidad</th>
+                <th class="w-10">Componente</th>
+            </tr>
+        </thead>
+    </table>
+    <p class="mb-0">
+        <i class="fa fa-exclamation-triangle fa-4x text-quinary"></i>
+    </p>
+    <p class="mb-2">
+        La entidad aún no ha reportado datos abiertos en la vigencia!
+    </p>
+</div>

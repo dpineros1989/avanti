@@ -1,0 +1,133 @@
+<span class="font-weight-bold">
+    <strong>Meta PAD:</strong> {{ indicador.metaPad }}
+</span>
+<div class="card border-primary mt-2">
+    <div class="body p-1">
+        {{ indicador.descripcion }}
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="card border-primary mb-2">
+                    <div class="card-header bg-primary">
+                        Ficha técnica
+                    </div>
+                    <div class="card-body pt-3 pb-3 pl-2 pr-2">
+                        <table class="table table-sm table-hover table-inner-bordered mb-0">
+                            <tbody>
+                                <tr>
+                                    <th class="w-25">Tipo de indicador</th>
+                                    <td>{{ indicador.tipo.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tipo de oferta</th>
+                                    <td>{{ indicador.tipoOferta.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Programación meta física</th>
+                                    <td>
+                                        <span *ngIf="indicador.metaFisica <= -2">
+                                            {{ indicador.metaFisica | etiqueta }}
+                                        </span>
+                                        <span *ngIf="indicador.metaFisica > -2">
+                                            {{ indicador.metaFisica | etiqueta }} {{ indicador.unidadMedida}}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Presupuesto inicial</th>
+                                    <td>{{ indicador.metaPresupuestal | etiqueta: true }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-primary mb-2" *ngIf="!cargando && graficaAvanceFisico.categorias.length > 0">
+                    <div class="card-header bg-primary">
+                        {{ graficaAvanceFisico.titulo }}
+                    </div>
+                    <div class="card-body pt-3 pb-3 pl-2 pr-2">
+                        <app-grafica-multi-axis
+                                [categorias]="graficaAvanceFisico.categorias" 
+                                [series]="graficaAvanceFisico.series"
+                                [ejesY]="[indicador.unidadMedida, '%']"
+                                alto="360px">
+                        </app-grafica-multi-axis>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-primary mb-2" *ngIf="!cargando && graficaAvanceFisico.categorias.length > 0">
+                    <div class="card-header bg-primary">
+                        {{ graficaAvancePptal.titulo }}
+                    </div>
+                    <div class="card-body pt-3 pb-3 pl-2 pr-2">
+                        <app-grafica-multi-axis
+                                [categorias]="graficaAvancePptal.categorias" 
+                                [series]="graficaAvancePptal.series"
+                                [ejesY]="['millones de pesos', '%']"
+                                alto="360px">
+                        </app-grafica-multi-axis>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="card border-primary mb-2">
+                    <div class="card-header bg-primary">
+                        Mapa de política
+                    </div>
+                    <div class="card-body pt-3 pb-3 pl-2 pr-2">
+                        <table class="table table-sm table-responsive-sm table-hover mt-1">
+                            <thead>
+                                <tr>
+                                    <th class="w-10">Componente</th>
+                                    <th class="w-10">Medida</th>
+                                    <th class="w-20">Entidad</th>
+                                    <th class="w-30">Proyecto inversión asociado</th>
+                                    <th class="w-30">Meta PI asociado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ indicador.medidas[0].componente.nombre }}</td>
+                                    <td>
+                                        <span *ngIf="indicador.medidas && indicador.medidas.length === 1">
+                                            {{ indicador.medidas[0].nombre }}
+                                        </span>
+                                        <ul *ngIf="indicador.medidas && indicador.medidas.length > 1">
+                                            <li *ngFor="let medida of indicador.medidas">
+                                                {{ medida.nombre }}
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>{{ indicador.entidad.nombre }}</td>
+                                    <td>
+                                        <span *ngIf="indicador.metasPI && indicador.metasPI[0]">
+                                            {{ indicador.metasPI[0].proyecto.nombre }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="indicador.metasPI && indicador.metasPI.length === 1">
+                                            {{ indicador.metasPI[0].nombre }}
+                                        </span>
+                                        <ul *ngIf="indicador.metasPI && indicador.metasPI.length > 1">
+                                            <li *ngFor="let metaPI of indicador.metasPI">
+                                                {{ metaPI.nombre }}
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<ng-container *ngIf="vigencia || entidades.length > 0 || componentes.length > 0; then contenido; else sinContenido"></ng-container>
+<ng-template #contenido>
+    <div class="card border-primary mb-2">
+        <div class="card-header bg-primary">
+            {{ titulo }}
+        </div>
+        <div class="card-body pt-3 pb-3 pl-2 pr-2">
+            <div class="card border-secondary">
+                <label class="m-2 font-weight-bold text-primary">
+                    Criterios de búsqueda
+                </label>
+                <div class="card-body">
+                    <form novalidate [formGroup]="formulario" (ngSubmit)="buscarDatosAbiertos()">
+                        <div class="form-group row">
+                            <div class="input-group col-lg-4">
+                                <input  type="text" 
+                                        class="form-control" 
+                                        placeholder="Palabra clave del archivo"
+                                        formControlName="nombreArchivo">
+                            </div>
+                            <div class="input-group col-lg-4">
+                                <select class="form-control" formControlName="entidadId">
+                                    <option value="0">[Seleccione entidad...]</option>
+                                    <option *ngFor="let entidad of entidades" 
+                                            [value]="entidad.id">
+                                        {{ entidad.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-group col-lg-4">
+                                <select class="form-control" formControlName="componenteId">
+                                    <option value="0">[Seleccione componente...]</option>
+                                    <option *ngFor="let componente of componentes" 
+                                            [value]="componente.id">
+                                        {{ componente.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-4 animated fadeIn fast">
+                            <div class="col-12 text-center">
+                                <button type="submit" 
+                                        class="btn btn-quinary w-50">
+                                    <i class="fa fa-search"></i>
+                                    Buscar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mt-1 animated fadeIn fast">
+                            <div class="col-12 text-center">
+                                <button type="button" 
+                                        class="btn btn-outline-quinary w-50"
+                                        title="Nueva búsqueda"
+                                        (click)="limpiarFormulario()">
+                                    <i class="fa fa-eraser"></i>
+                                    Nueva búsqueda
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <app-datos-abiertos tamanio="large" [datos]="datos" *ngIf="!cargando"></app-datos-abiertos>
+    
+                            <div class="text-center mt-2 animated fadeIn fast" *ngIf="cargando">
+                                <app-cargando [mostrar]="cargando"></app-cargando>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #sinContenido>
+    Favor seleccionar una vigencia válida
+</ng-template>

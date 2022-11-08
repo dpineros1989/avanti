@@ -1,0 +1,80 @@
+.badge-primary {
+    cursor: pointer;
+}
+
+table th {
+	background: #f5f5f5;
+    color: #333333;
+    padding-left: 7px;
+}
+
+.table-inner-bordered td {
+	border-right: 1px solid #eee !important;
+}
+
+.table-inner-bordered td.last {
+	border-right: 0px !important;
+}
+
+.table-fix-head {
+	overflow-y: auto;
+	height: 220px;
+	min-height: 150px;
+}
+
+.table-fix-head thead th {
+	position: sticky;
+	top: 0;
+}
+
+/* Just common table stuff. Really. */
+.table-fix-head table {
+	border-collapse: collapse;
+	width: 100%;
+}
+.table-fix-head th, td {
+	padding: 8px 16px;
+}
+.table-fix-head th {
+	background: #eee;
+}
+
+
+.label-default-custom {
+    background-color: #bbb;
+    margin: 3px;
+    padding: 5px;
+    border-radius: 4px;
+}
+.label-default-custom[href]:hover,
+.label-default-custom[href]:focus {
+    background-color: #5e5e5e;
+}
+
+
+.label-active {
+    background-color: #f9f44d;
+    color: #555;
+}
+.label-active[href]:hover,
+.label-active[href]:focus {
+    background-color: #449d44;
+}
+
+.label-inactive {
+    background-color: #bbb;
+    color: white;
+}
+.label-inactive[href]:hover,
+.label-inactive[href]:focus {
+    background-color: #5e5e5e;
+}
+
+i.fa > .i:not(.alert i.fa) {
+    color: #333333;
+}
+
+.disabled {
+    background-color: #bbb;
+    color: white;
+}

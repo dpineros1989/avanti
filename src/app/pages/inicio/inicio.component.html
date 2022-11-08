@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="card border-primary mb-2">
+            <div class="card-header bg-primary">
+                Cumplimiento PAD 
+                <span *ngIf="corteSeleccionado && corteSeleccionado.vigencia">
+                    {{ corteSeleccionado.vigencia.nombre }}
+                </span>
+            </div>
+            <div class="card-body p-0">
+                <app-cumplimiento-global 
+                    titulo="Cumplimiento Meta PAD"
+                    [corteSeleccionado]="corteSeleccionado">
+                </app-cumplimiento-global>
+
+                <app-presupuesto-plurianual 
+                    titulo="Presupuesto PAD Plurianual"
+                    [corteSeleccionado]="corteSeleccionado">
+                </app-presupuesto-plurianual>
+            </div>
+            <div class="card-footer bg-light" *ngIf="corteSeleccionado != null && corteSeleccionado">
+                <span *ngIf="corteSeleccionado && corteSeleccionado.vigencia">
+                    El % de cumplimiento se muestra con corte a {{ corteSeleccionado.nombre }} de {{ corteSeleccionado.vigencia.nombre }}
+                </span>
+            </div>
+        </div>
+        
+        <app-presupuesto-componente
+            titulo="Metas PAD por Componente"
+            [corteSeleccionado]="corteSeleccionado">
+        </app-presupuesto-componente>
+        
+    </div>
+    <div class="col-lg-7 col-md-12 col-sm-12 mb-2">
+        <app-mapa-distrital 
+            titulo="Mapa Distrital"
+            [corteSeleccionado]="corteSeleccionado">
+        </app-mapa-distrital>
+    </div>
+</div>

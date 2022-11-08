@@ -1,0 +1,13 @@
+<label class="text-primary text-center font-weight-bold w-100">Ejecución presupuestal</label>
+<div class="text-center"></div>
+
+<app-grafica *ngIf="!cargando && !error && categorias.length > 0"
+    [categorias]="categorias" 
+    [series]="series"
+    unidad="millones"
+    alto="370px">
+</app-grafica>
+
+<div class="p-1 text-center animated fadeIn fast" *ngIf="cargando">
+    <app-cargando [mostrar]="cargando"></app-cargando>
+</div>

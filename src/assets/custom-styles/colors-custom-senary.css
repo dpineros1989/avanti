@@ -1,0 +1,97 @@
+.bg-senary {
+    color: #333333 !important;
+    background-color: #ffe223 !important;
+}
+
+.badge-senary {
+    background-color: #ffe223 !important;
+}
+
+.border-senary {
+    border-color: #ffe223 !important;
+}
+
+.btn-senary {
+    color: #333333 !important;
+    background-color: #ffe223;
+    border-color: #ffe223;
+}
+
+.btn-senary:hover {
+    color: #fff;
+    background-color: #333333;
+    border-color: #332c26;
+}
+
+.btn-senary:focus, .btn-senary.focus {
+    color: #fff;
+    background-color: #333333;
+    border-color: #332c26;
+    box-shadow: 0 0 0 0.2rem rgba(255, 71, 38, 0.5);
+}
+
+.btn-senary.disabled, .btn-senary:disabled {
+    color: #333333 !important;
+    background-color: #ffe223;
+    border-color: #ffe223;
+}
+
+.btn-senary:not(:disabled):not(.disabled):active, .btn-senary:not(:disabled):not(.disabled).active,
+.show > .btn-senary.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
+
+.btn-senary:not(:disabled):not(.disabled):active:focus, .btn-senary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-senary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 71, 38, 0.5);
+}
+
+.btn-outline-senary {
+    color: #ffe223;
+    border-color: #ffe223;
+}
+
+.btn-outline-senary:hover {
+    color: #333333 !important;
+    background-color: #ffe223;
+    border-color: #ffe223;
+}
+
+.btn-outline-senary:focus, .btn-outline-senary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-senary.disabled, .btn-outline-senary:disabled {
+    color: #ffe223 !important;
+    background-color: transparent;
+}
+
+.btn-outline-senary:not(:disabled):not(.disabled):active, .btn-outline-senary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-senary.dropdown-toggle {
+    color: #333333 !important;
+    background-color: #ffe223;
+    border-color: #ffe223;
+}
+
+.btn-outline-senary:not(:disabled):not(.disabled):active:focus, .btn-outline-senary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-senary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-outline-senary i {
+    color: #ffe223 !important;
+}
+
+.btn-outline-senary:hover i {
+    color: #333333 !important;
+}
+
+.text-senary {
+    color: #ffe223 !important;
+}
+
+.btn-senary i.fa, .bg-senary i.fa {
+    color: #333333;
+}

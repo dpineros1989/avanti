@@ -1,0 +1,43 @@
+<ng-container *ngIf="componente && !cargandoTablero; then contenido; else sinContenido"></ng-container>
+
+<ng-template #contenido>
+    <div class="card mb-2" ngif>
+        <div class="card-body pt-3 pb-3 pl-2 pr-2">
+            <h5>
+                <span *ngIf="componente">
+                        {{ componente.nombre }}
+                </span>
+                <span *ngIf="vigencia && vigencia.nombre">
+                        - Vigencia {{ vigencia.nombre }}
+                </span>
+            </h5>
+            <h5 *ngIf="componente && componente.descripcion">
+                {{ componente.descripcion }}
+            </h5>
+            <app-tablero 
+                        [rutas]="rutas" 
+                        [avances]="avances" 
+                        *ngIf="!cargandoTablero && avances.length > 0">
+            </app-tablero>
+            <div class="text-center mt-2 animated fadeIn fast" *ngIf="cargandoTablero">
+                <app-cargando [mostrar]="cargandoTablero"></app-cargando>
+            </div>
+    
+            <div class="card border-primary mt-3">
+                <div class="card-body p-2">
+                    <label class="m-1 font-weight-bold">
+                        Datos abiertos
+                    </label>
+                    <app-datos-abiertos [datos]="datos" *ngIf="!cargandoDatosAbiertos"></app-datos-abiertos>
+                    <div class="text-center mt-2 animated fadeIn fast" *ngIf="cargandoDatosAbiertos">
+                        <app-cargando [mostrar]="cargandoDatosAbiertos"></app-cargando>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</ng-template>
+<ng-template #sinContenido>
+    Por favor seleccionar una entidad en la página inicial.
+</ng-template>

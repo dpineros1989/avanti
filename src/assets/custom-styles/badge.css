@@ -1,0 +1,63 @@
+/*
+*	Whatsapp style badge
+*/
+.badge-whatsapp .group .icon .label {
+	/* background: red; */
+	position: absolute;
+	top: 10px;
+	right: 55px;
+}
+
+.badge-whatsapp, .badge-whatsapp:link:active, .badge-whatsapp:visited:active,
+	.badge-whatsapp:focus {
+	background-color: rgb(186, 204, 0, 0.1);
+	position: relative;
+	display: inline-block;
+	padding: 15px 10px 10px 10px;
+	margin: 10px;
+	color: #333333 !important;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+	-webkit-box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #cccccc;
+	box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #cccccc;
+	border-radius: 4px;
+}
+
+.badge-whatsapp:hover {
+	/* background: #e0e0eb; */
+	/*background-color: rgb(42, 157, 215);*/
+	background-color: rgb(186, 204, 0, 0.7);
+	color: #333333 !important;
+	text-align: center;
+	text-decoration: none;
+}
+
+.badge-whatsapp .label {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+}
+
+
+
+/*
+*	Header style badge
+*/
+.label-active {
+	background-color: #f9f44d;
+	color: #555;
+}
+.label-active[href]:hover,
+.label-active[href]:focus {
+	background-color: #449d44;
+}
+
+.label-inactive {
+	background-color: #bbb;
+	color: white;
+}
+.label-inactive[href]:hover,
+.label-inactive[href]:focus {
+	background-color: #5e5e5e;
+}

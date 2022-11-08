@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <a class="navbar-brand" routerLink="inicio">
+        <img    src="assets/logo/avanti.png" 
+                height="38" 
+                alt="Avanti">
+    </a>
+    <button class="navbar-toggler" 
+            type="button" 
+            data-toggle="collapse" 
+            data-target="#navbarAvanti"
+            aria-controls="navbarAvanti" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarAvanti">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['bdatosabiertos', nombreVigenciaSeleccionada]">Datos abiertos</a>
+            </li>
+            <!-- <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" [routerLink]="['/entidad', 1]">Entidades SDARIV</a>
+            </li> -->
+            <li class="nav-item dropdown" *ngIf="vigencias && vigencias.length > 0">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Vigencias
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" 
+                            *ngFor="let vigencia of vigencias"
+                            (click)="guardarVigencia(vigencia.nombre)" 
+                            [routerLink]="['inicio', vigencia.nombre]">
+                        {{ vigencia.nombre }}
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item" 
+                routerLinkActive="active" 
+                *ngIf="usuarioActual && usuarioActual.roles.includes('ENTIDAD') && vigenciaParaRegistro">
+                <a class="nav-link" [routerLink]="['metas', vigenciaParaRegistro.nombre, 'entidad', usuarioActual.entidad.sigla.trim()]">Registrar seguimiento</a>
+            </li>
+            <li class="nav-item" 
+                routerLinkActive="active" 
+                *ngIf="usuarioActual && usuarioActual.roles.includes('ADMIN') && 1 === 2">
+                <a class="nav-link" routerLink="entidades">Gestionar entidades</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <span *ngIf="usuarioActual">
+                Hola {{ usuarioActual.username }}
+            </span>
+            &nbsp;
+            <button type="button" 
+                    class="btn btn-outline-primary" 
+                    (click)="logout()"
+                    *ngIf="usuarioActual">
+                Salir
+                <i class="fa fa-sign-out-alt"></i>
+            </button>
+            <button type="button" 
+                    class="btn btn-outline-blue"
+                    (click)="login()" 
+                    *ngIf="!usuarioActual">
+                <i class="fa fa-sign-in-alt"></i>
+                Iniciar sesión
+            </button>
+        </span>
+    </div>
+</nav>

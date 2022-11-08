@@ -1,0 +1,39 @@
+<div class="card border-primary mb-2">
+    <div class="card-header bg-primary">
+        {{ titulo }} {{ vigencia }}
+    </div>
+    <div class="card-body p-1" *ngIf="!cargando && !error">
+        <a class="badge-whatsapp puntero" *ngFor="let avance of avances"
+                (click)="verComponente(avance.componente.abreviatura)">
+            <span [innerHtml]="avance.componente.iconoFA.grande | htmlSeguro">
+            </span>
+            <br/>
+            <span> 
+                {{ avance.componente.nombre }} <br/>
+                (
+                    {{ avance.presupuestoAprobado | currency:'COP':'symbol':'.2-2' }}
+                    <span *ngIf="this.divididoMillones">millones</span>
+                )
+            </span>
+            <span class="badge label label-active" title="Metas PAD">
+                {{ avance.metas }}
+            </span>
+        </a>
+    </div>
+    
+    <div class="card-body p-1 text-center animated fadeIn fast" *ngIf="cargando">
+        <app-cargando [mostrar]="cargando"></app-cargando>
+    </div>
+    <div class="card-body p-1 text-center animated fadeIn fast" *ngIf="!cargando && error">
+        <p class="mb-0">
+            <i class="fa fa-exclamation-triangle fa-4x"></i>
+        </p>
+        <p class="mb-2">
+            Sin información que mostrar!
+        </p>
+    </div>
+
+    <div class="card-footer bg-light" *ngIf="piecera != null && !cargando && !error">
+        {{ piecera }}
+    </div>
+</div>

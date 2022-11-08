@@ -1,0 +1,97 @@
+<div class="card border-secondary mb-2">
+    <div class="card-body pt-3 pb-3 pl-2 pr-2">
+        <div class="card border-primary">
+            <div class="card-header bg-primary">Retroalimentación a seguimientos</div>
+            <div class="card-body">
+                <form novalidate [formGroup]="formulario" (ngSubmit)="actualizarCargues()">
+                    <div class="form-group row">
+                        <div class="input-group col-lg-2 col-sm-12">
+                            <select class="form-control" formControlName="vigenciaId">
+                                <option value="0">[Seleccione vigencia...]</option>
+                                <option *ngFor="let vigencia of vigencias" 
+                                        [value]="vigencia.id">
+                                    {{ vigencia.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-2 col-sm-12">
+                            <select class="form-control" formControlName="corteId">
+                                <option value="0">[Seleccione corte...]</option>
+                                <option *ngFor="let corte of cortes" 
+                                        [value]="corte.id">
+                                    {{ corte.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group col-lg-8 col-sm-12">
+                            <button type="submit" 
+                                    class="btn btn-quinary">
+                                <i class="fa fa-search"></i>
+                                Mostrar cargues
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-12">
+                        <app-cargues-masivos [ultimoCorte]="ultimoCorte" 
+                                            [cargues]="cargues"
+                                            [retroalimentar]="true"
+                                            *ngIf="!obteniendoCargues"></app-cargues-masivos>
+                        <div class="text-center mt-2 animated fadeIn fast" *ngIf="!errorObteniendoCargues && obteniendoCargues">
+                            <app-cargando [mostrar]="obteniendoCargues"></app-cargando>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card border-danger mt-3">
+            <div class="card-header border-danger text-danger">
+                <strong>Activación de vigencias y cortes</strong>
+            </div>
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-12">
+                        <label class="red strong">Precaución:</label> 
+                        Tenga en cuenta que luego de activar el corte específico, todos los cargues de seguimiento 
+                        realizados por las entidades SDARIV serán en dicho corte.
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        Cortes de la vigencia actual 2020-1
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-12">
+                        <div class="pretty p-switch p-fill">
+                            <input type="checkbox" />
+                            <div class="state p-primary font-size-09">
+                                <label>
+                                    Marzo
+                                </label>
+                            </div>
+                        </div>
+                        <div class="pretty p-switch p-fill">
+                            <input type="checkbox" />
+                            <div class="state p-primary font-size-09">
+                                <label>
+                                    Junio
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-12">
+                        <button type="button" 
+                                class="btn btn-outline-danger w-25">
+                            <i class="fa fa-save"></i>
+                            Activar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

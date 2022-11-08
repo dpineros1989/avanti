@@ -1,0 +1,60 @@
+<div class="card mb-2">
+    <div class="card-body pt-3 pb-3 pl-2 pr-2">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h5>
+                    <span *ngIf="ultimoCorte">
+                        Cargue de seguimientos para el corte {{ ultimoCorte.nombre.toLowerCase() }} de {{ ultimoCorte.vigencia.nombre }}
+                    </span>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="!errorCargandoArchivo && mensaje" class="alert alert-info mt-3 mb-2">{{mensaje}}</div>
+                <div *ngIf="errorCargandoArchivo && mensaje" class="alert alert-danger mt-3 mb-2">{{mensaje}}</div>
+            </div>
+        </div>
+        <div class="row" *ngIf="ultimoCorte && esPosibleCargarArchivos">
+            <div class="col-md-6">
+                <div appNgDropFile [items]="items" (mouseSobre)="estaSobreElemento = $event" [ngClass]="{'file-over': estaSobreElemento}" class="well drop-zone">
+                    <h4>Arrastre aquí el archivo de seguimiento</h4>
+                    <img src="assets/images/drop-images.png">
+                </div>
+            </div>
+            <div class="col-md-6 mt-2">
+                <div *ngIf="items.length > 0">
+                    <h5>
+                        {{ primerItem.nombreArchivo }} <br>
+                        <small>{{ primerItem.archivo.size / 1024 | number: '.2-2' }} KB</small>
+                    </h5>
+                    <div class="progress mb-3" style="height: 20px;">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': primerItem.progreso + '%'}"></div>
+                    </div>
+                    <button class="btn btn-quinary w-50"
+                            [disabled]="items.length === 0"
+                            (click)="cargarArchivo()">
+                        <i class="fa fa-upload"></i>
+                        Cargar
+                    </button>
+                    <button class="btn btn-outline-quinary w-50"
+                            [disabled]="items.length === 0"
+                            (click)="limpiarArchivo()">
+                        <i class="fa fa-eraser"></i>
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <app-cargues-masivos [ultimoCorte]="ultimoCorte" 
+                                     [cargues]="cargues"
+                                     *ngIf="!obteniendoCargues"></app-cargues-masivos>
+                <div class="text-center mt-2 animated fadeIn fast" *ngIf="!errorObteniendoCargues && obteniendoCargues">
+                    <app-cargando [mostrar]="obteniendoCargues"></app-cargando>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

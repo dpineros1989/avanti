@@ -1,0 +1,21 @@
+<div class="card border-primary mt-1"
+        [ngClass]="{'puntero': ruta && ruta.length > 0}"
+        (click)="verDetalle()">
+    <div class="card-header bg-primary p-2" [ngClass]="{'hoverable': ruta && ruta.length > 0}">
+        <div class="row">
+            <div class="col-2">
+                <i class="fa fa-{{ icono }} fa-4x"></i>
+            </div>
+            <div class="col-10 text-right">
+                <div class="lead font-weight-bold">
+                    {{ valor }}
+                </div>
+                <div>
+                    <span [innerHtml]="titulo | htmlSeguro"></span>
+                    <br/>
+                    <span [innerHtml]="subtitulo | htmlSeguro"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

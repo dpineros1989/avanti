@@ -1,0 +1,29 @@
+<div class="card border-primary mb-2">
+    <div class="card-header bg-primary">
+        {{ titulo }}
+    </div>
+    <div class="card-body text-center p-1" *ngIf="!cargando && !error && categorias.length > 0">
+        <app-grafica 
+            [categorias]="categorias" 
+            [series]="series"
+            unidad="millones"
+            alto="370px">
+        </app-grafica>
+    </div>
+    
+    <div class="card-body p-1 text-center animated fadeIn fast" *ngIf="cargando">
+        <app-cargando [mostrar]="cargando"></app-cargando>
+    </div>
+    <div class="card-body p-1 text-center animated fadeIn fast" *ngIf="!cargando && error">
+        <p class="mb-0">
+            <i class="fa fa-exclamation-triangle fa-4x"></i>
+        </p>
+        <p class="mb-2">
+            Sin información que mostrar!
+        </p>
+    </div>
+
+    <div class="card-footer bg-light" *ngIf="piecera != null && !cargando && !error">
+        {{ piecera }}
+    </div>
+</div>

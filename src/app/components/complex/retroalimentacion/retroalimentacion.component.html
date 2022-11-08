@@ -1,0 +1,79 @@
+<p>
+    El archivo <strong><u>{{ cargue.archivo }}</u></strong> fue cargado {{ cargue.fechaFormateada.toLowerCase() }} por 
+    <strong><u>{{ cargue.entidad.nombre }}</u></strong>, para cumplir con el seguimiento con 
+    corte {{ cargue.corte.nombre.toLowerCase() }} de {{ cargue.corte.vigencia.nombre }}.
+</p>
+<!-- Nota por estar aprobado el cargue -->
+<p *ngIf="cargue.aprobado">
+    <label class="font-weight-bold red">NOTA:</label> 
+    No es posible hacerle modificaciones, ya que el archivo fue procesado por el sistema 
+    {{ cargue.fechaFormateada.toLowerCase() }}
+    y quedó registrado como seguimiento oficial de la entidad para el corte mencionado anteriormente.
+</p>
+
+<!-- Form para retroalimentar y/o aprobar -->
+<form novalidate [formGroup]="formulario" (ngSubmit)="retroalimentar()">
+    <div class="row form-group" *ngIf="!cargue.aprobado">
+        <div class="col-md-12">
+            <label class="strong">Retroalimentación:</label>
+        </div>
+        <div class="col-md-12">
+            <textarea id="retroalimentacion"
+                        class="form-control" 
+                        rows="4"
+                        formControlName="retroalimentacion"></textarea>
+        </div>
+        <div class="col-md-12">
+            <div class="pretty p-switch p-fill">
+                <input type="checkbox" formControlName="enviarCorreo" />
+                <div class="state p-primary font-size-09">
+                    <label>
+                        Enviar retroalimentación al correo del responsable en la entidad
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row form-group" *ngIf="!cargue.aprobado">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body border-success">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="text-success strong">Aprobación:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>Actualmente el cargue <strong>NO</strong> se encuentra aprobado.</span>
+                            Luego de revisar el archivo, puede aprobarlo haciendo clic
+                            <div class="pretty p-switch p-fill">
+                                <input type="checkbox" formControlName="aprobado" />
+                                <div class="state p-success font-size-09">
+                                    <label>
+                                        aquí.
+                                    </label>
+                                </div>
+                            </div>
+                            <p>
+                                Tenga en cuenta que al aprobarlo, el sistema lo <u>procesará y quedará registrado 
+                                como seguimiento oficial</u> de la entidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <div class="form-group row animated fadeIn fast text-center">
+                <div class="col-12">
+                    <button type="submit" 
+                            class="btn btn-outline-success w-25">
+                        <i class="fa fa-save"></i>
+                        Retroalimentar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,248 @@
+<div class="row mb-2">
+    <div class="col-12">
+        <h5>
+            <span *ngIf="ultimoCorte">
+                Registro de seguimientos para el corte {{ ultimoCorte.nombre.toLowerCase() }} de {{ ultimoCorte.vigencia.nombre }}
+            </span>
+        </h5>
+    </div>
+</div>
+<form novalidate [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="card border-primary mb-2">
+        <div class="card-body p-2 text-center" *ngIf="!ultimoCorte">
+            <p class="mb-0">
+                <i class="fa fa-exclamation-triangle fa-4x"></i>
+            </p>
+            No hay corte activo para registrar seguimientos. <br />
+            Favor notificar a la ACDVPR para que active el respectivo corte.
+        </div>
+        <div class="card-body pt-1 pb-3 pl-2 pr-2" *ngIf="ultimoCorte">
+            <div class="row">
+                <div class="col-12">
+                    <div *ngIf="!errorCargandoArchivo && mensaje" class="alert alert-info mt-3 mb-2">{{mensaje}}</div>
+                    <div *ngIf="errorCargandoArchivo && mensaje" class="alert alert-danger mt-3 mb-2">{{mensaje}}</div>
+                </div>
+            </div>
+            <div class="row" *ngIf="esPosibleCargarArchivos">
+                <div class="col-md-12">
+                    <div class="card mb-2">
+                        <div class="card-header bg-quinary">
+                            Registro de seguimiento por meta
+                        </div>
+                        <div class="card-body p-1">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-md-12">
+                                    <label>
+                                        <strong>Meta PAD:</strong>
+                                        {{ indicador.metaPad }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="archivoBeneficiarios && archivoBeneficiarios.archivo">
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning" role="alert">
+                                        Archivo cargado previamente: 
+                                        <strong>{{ archivoBeneficiarios.archivo }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="usuario && usuario.roles.includes('ENTIDAD')">
+                                <div class="col-md-6">
+                                    <div appNgDropFile [items]="items" (mouseSobre)="estaSobreElemento = $event" [ngClass]="{'file-over': estaSobreElemento}" class="well drop-zone">
+                                        <h4>Arrastre aquí el archivo de beneficiarios</h4>
+                                        <img src="assets/images/drop-images.png">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <div *ngIf="items.length > 0">
+                                        <h5>
+                                            {{ primerItem.nombreArchivo }} <br>
+                                            <small>{{ primerItem.archivo.size / 1024 | number: '.2-2' }} KB</small>
+                                        </h5>
+                                        <div class="progress mb-3" style="height: 20px;">
+                                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': primerItem.progreso + '%'}"></div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-2 text-right">
+                                    Avance Físico Meta
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <span class="form-control form-control-sm form-control-disabled alert alert-light p-1 m-0">
+                                            {{ indicador.metaFisica | etiqueta }}
+                                        </span>
+                                        <small id="fisicoVigente" class="form-text text-muted font-weight-bold">
+                                            Programación meta física {{ ultimoCorte.vigencia.nombre }} (Aprobado en CDJT)
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" 
+                                                class="form-control form-control-sm" 
+                                                aria-describedby="fisicoEjecucion"
+                                                formControlName="fisicoEjecucion">
+                                        <small id="fisicoEjecucion" class="form-text text-muted font-weight-bold">
+                                            Avance físico acumulado corte {{ ultimoCorte.nombre.toLowerCase() }} (Ejecutado)
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <span class="form-control form-control-sm form-control-disabled alert alert-success p-1 m-0">
+                                            {{ porcentajeFisico | etiqueta }} %
+                                        </span>
+                                        <small id="fisicoPorcentual" class="form-text text-muted font-weight-bold">Porcentaje</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 text-right">
+                                    Presupuesto meta
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <span class="form-control form-control-sm form-control-disabled alert alert-light p-1 m-0">
+                                            {{ indicador.metaPresupuestal | etiqueta }}
+                                        </span>
+                                        <small id="presupuestoInicial" class="form-text text-muted font-weight-bold">
+                                            Presupuesto Inicial {{ ultimoCorte.vigencia.nombre }} (Aprobado en CDJT)
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" 
+                                                class="form-control form-control-sm" 
+                                                aria-describedby="pptoVigente"
+                                                formControlName="pptoVigente">
+                                        <small id="pptoVigente" class="form-text text-muted font-weight-bold">
+                                            Presupuesto vigente corte {{ ultimoCorte.nombre.toLowerCase() }}
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" 
+                                                class="form-control form-control-sm" 
+                                                aria-describedby="pptoEjecucion"
+                                                formControlName="pptoEjecucion">
+                                        <small id="pptoEjecucion" class="form-text text-muted font-weight-bold">
+                                            Presupuesto ejecutado corte {{ ultimoCorte.nombre.toLowerCase() }}
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        <span class="form-control form-control-sm form-control-disabled alert alert-success p-1 m-0">
+                                            {{ porcentajeEjecucion | etiqueta }} %
+                                        </span>
+                                        <small id="pptoPorcentual" class="form-text text-muted font-weight-bold">Porcentaje</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="bg-primary" />
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="card mb-2">
+                        <div class="card-header bg-quinary">
+                            Mapa de política
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-sm table-responsive-sm table-hover mt-1">
+                                <thead>
+                                    <tr>
+                                        <!-- <th class="w-20">Fuentes de finaciación</th> -->
+                                        <th class="w-50">Proyecto inversión asociado</th>
+                                        <th class="w-10">Componente de Política</th>
+                                        <th class="w-20">Medida de Política</th>
+                                        <th class="w-20">Derecho</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <!-- <td>
+                                            <span *ngIf="indicador.fuentesFinanciacion && indicador.fuentesFinanciacion.length === 1">
+                                                {{ indicador.fuentesFinanciacion[0].nombre }}
+                                            </span>
+                                            <ul *ngIf="indicador.fuentesFinanciacion && indicador.fuentesFinanciacion.length > 1">
+                                                <li *ngFor="let fuente of indicador.fuentesFinanciacion">
+                                                    {{ fuente.nombre }}
+                                                </li>
+                                            </ul>
+                                        </td> -->
+                                        <td>
+                                            <span *ngIf="indicador.metasPI && indicador.metasPI.length === 1">
+                                                {{ indicador.metasPI[0].nombre }}
+                                            </span>
+                                            <ul *ngIf="indicador.metasPI && indicador.metasPI.length > 1">
+                                                <li *ngFor="let metaPI of indicador.metasPI">
+                                                    {{ metaPI.nombre }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{ indicador.medidas[0].componente.nombre }}</td>
+                                        <td>
+                                            <span *ngIf="indicador.medidas && indicador.medidas.length === 1">
+                                                {{ indicador.medidas[0].nombre }}
+                                            </span>
+                                            <ul *ngIf="indicador.medidas && indicador.medidas.length > 1">
+                                                <li *ngFor="let medida of indicador.medidas">
+                                                    {{ medida.nombre }}
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <td>{{ indicador.medidas[0].derecho.nombre }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <button type="submit"
+                            class="btn btn-quinary w-50"
+                            [disabled]="formulario.invalid"
+                            *ngIf="usuario && usuario.roles.includes('ENTIDAD')">
+                        <i class="fa fa-upload"></i>
+                        Guardar
+                    </button>
+                    <button type="button" 
+                            class="btn btn-outline-quinary w-50"
+                            (click)="limpiarFormulario()"
+                            *ngIf="usuario && usuario.roles.includes('ENTIDAD')">
+                        <i class="fa fa-eraser"></i>
+                        Limpiar
+                    </button>
+                    <button type="button"
+                            class="btn btn-quinary w-50"
+                            (click)="aprobarSeguimiento()"
+                            *ngIf="usuario && usuario.roles.includes('ADMIN')">
+                        <i class="fa fa-thumbs-up"></i>
+                        Aprobar
+                    </button>
+                    <button type="button"
+                            class="btn btn-outline-quinary w-50"
+                            (click)="desaprobarSeguimiento()"
+                            *ngIf="usuario && usuario.roles.includes('ADMIN')">
+                        <i class="fa fa-thumbs-down"></i>
+                        Desaprobar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
